@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'questions.dart';
 
 void main() => runApp(Quizzler());
 
@@ -30,12 +32,19 @@ class _QuizPageState extends State<QuizPage> {
     //Icon(Icons.check, color: Colors.green),
     //Icon(Icons.close, color: Colors.red)
   ]; //brackets are for lists/arrays
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
+  List<Question> questionBank = [
+    Question(q: 'You can lead a cow down stairs but not up stairs.', b: false),
+    Question(
+        q: 'Approximately one quarter of human bones are in the feet.',
+        b: true),
+    Question(q: 'A slug\'s blood is green.', b: true),
   ];
-  List<bool> answers = [false, true, true];
+  // List<String> questions = [
+  //   'You can lead a cow down stairs but not up stairs.',
+  //   'Approximately one quarter of human bones are in the feet.',
+  //   'A slug\'s blood is green.'
+  // ];
+  // List<bool> answers = [false, true, true];
   int qNum = 0;
 
   @override
@@ -50,7 +59,8 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[qNum],
+                //questions[qNum],
+                questionBank[qNum].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,6 +84,11 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                if (questionBank[qNum].questionAnswer == true) {
+                  scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                } else {
+                  scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+                }
                 setState(() {
                   qNum++;
                 });
@@ -94,6 +109,11 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                if (questionBank[qNum].questionAnswer == false) {
+                  scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                } else {
+                  scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+                }
                 setState(() {
                   qNum++;
                 });
