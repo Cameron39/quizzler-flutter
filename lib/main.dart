@@ -42,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
   //   'A slug\'s blood is green.'
   // ];
   // List<bool> answers = [false, true, true];
-  int qNum = 0;
+  //int qNum = 0;
   //questionBank.add(Question(q: 'blah blah', b: false));
 
   @override
@@ -58,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
             child: Center(
               child: Text(
                 //questions[qNum],
-                quizBrain.questionBank[qNum].questionText,
+                quizBrain.getQuestion(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -82,13 +82,13 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (quizBrain.questionBank[qNum].questionAnswer == true) {
+                if (quizBrain.getAnswer() == true) {
                   scoreKeeper.add(Icon(Icons.check, color: Colors.green));
                 } else {
                   scoreKeeper.add(Icon(Icons.close, color: Colors.red));
                 }
                 setState(() {
-                  qNum++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -107,13 +107,13 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (quizBrain.questionBank[qNum].questionAnswer == false) {
+                if (quizBrain.getAnswer() == false) {
                   scoreKeeper.add(Icon(Icons.check, color: Colors.green));
                 } else {
                   scoreKeeper.add(Icon(Icons.close, color: Colors.red));
                 }
                 setState(() {
-                  qNum++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
