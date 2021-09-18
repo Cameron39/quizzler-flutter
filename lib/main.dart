@@ -45,6 +45,17 @@ class _QuizPageState extends State<QuizPage> {
   //int qNum = 0;
   //questionBank.add(Question(q: 'blah blah', b: false));
 
+  void checkAnswer(bool userInput) {
+    setState(() {
+      if (quizBrain.getAnswer() == userInput) {
+        scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+      } else {
+        scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+      }
+      quizBrain.nextQuestion();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,14 +93,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (quizBrain.getAnswer() == true) {
-                  scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-                } else {
-                  scoreKeeper.add(Icon(Icons.close, color: Colors.red));
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                });
+                checkAnswer(true);
               },
             ),
           ),
@@ -107,14 +111,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if (quizBrain.getAnswer() == false) {
-                  scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-                } else {
-                  scoreKeeper.add(Icon(Icons.close, color: Colors.red));
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                });
+                checkAnswer(false);
               },
             ),
           ),
