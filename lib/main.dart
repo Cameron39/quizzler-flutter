@@ -39,6 +39,7 @@ class _QuizPageState extends State<QuizPage> {
         b: true),
     Question(q: 'A slug\'s blood is green.', b: true),
   ];
+  //questionBank.add(Question(q: 'the question',b: true));
   // List<String> questions = [
   //   'You can lead a cow down stairs but not up stairs.',
   //   'Approximately one quarter of human bones are in the feet.',
@@ -46,6 +47,7 @@ class _QuizPageState extends State<QuizPage> {
   // ];
   // List<bool> answers = [false, true, true];
   int qNum = 0;
+  //questionBank.add(Question(q: 'blah blah', b: false));
 
   @override
   Widget build(BuildContext context) {
